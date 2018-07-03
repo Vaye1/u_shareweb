@@ -837,11 +837,11 @@ var Base = function () {
             var isPublic = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
             var isDebug = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
 
-            if (this.token === undefined && needAuth) {
-                if (opts.error) {
-                    opts.error('please login first.');
-                }
-            } else {
+            // if (this.token === undefined && needAuth) {
+            //     if (opts.error) {
+            //         opts.error('please login first.');
+            //     }
+            // } else {
                 var params = {};
                 var headers = {
                     'Accept': 'application/json',
@@ -888,7 +888,7 @@ var Base = function () {
                     requestUrl = this.baseUrl + '/openapi/' + (isPublic ? 'public' : 'custom') + '/' + this.appId + '/' + url + '?sign=' + sign + '&time=' + time;
                 }
                 return NetWork.send(requestUrl, params);
-            }
+            // }
         }
     }]);
 
@@ -4203,11 +4203,11 @@ var CloudAPI = function () {
             var isPublic = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
             var isDebug = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
 
-            if (this.token == null && needAuth) {
-                if (opts.error) {
-                    opts.error('please login first.');
-                }
-            } else {
+            // if (this.token == null && needAuth) {
+            //     if (opts.error) {
+            //         opts.error('please login first.');
+            //     }
+            // } else {
                 var params = {};
                 var headers = {
                     'Accept': 'application/json',
@@ -4256,17 +4256,17 @@ var CloudAPI = function () {
                 }
                 return NetWork.send(requestUrl, params);
             }
-        }
+        // }
     }, {
         key: 'upload',
         value: function upload(url, opts) {
             var needAuth = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
-            if (this.token == null && needAuth) {
-                if (opts.error) {
-                    opts.error('please login first.');
-                }
-            } else {
+            // if (this.token == null && needAuth) {
+            //     if (opts.error) {
+            //         opts.error('please login first.');
+            //     }
+            // } else {
                 var params = {};
                 var headers = {
                     'Accept': 'application/json',
@@ -4304,7 +4304,7 @@ var CloudAPI = function () {
                 var requestUrl = this.uploadUrl + '/' + url + '?sign=' + sign + '&time=' + time;
                 NetWork.send(requestUrl, params);
             }
-        }
+        // }
     }]);
 
     return CloudAPI;

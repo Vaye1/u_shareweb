@@ -2309,7 +2309,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nmodule.exports = {\n    appId: 10004,\n    appSecret: \"1923091283\",\n    cloud: {\n        url: 'http://192.168.2.96:20000'\n    }\n};\n\n//# sourceURL=webpack:///./src/config/default.js?");
+eval("\n\nmodule.exports = {\n    appId: 10007,\n    appSecret: \"1923091283\",\n    cloud: {\n        // url: 'http://192.168.2.96:20000'\n        url: 'http://192.168.2.227:8000'\n    }\n};\n\n//# sourceURL=webpack:///./src/config/default.js?");
 
 /***/ }),
 
