@@ -7118,11 +7118,11 @@ var CloudAPI = function () {
             var isPublic = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
             var isDebug = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
 
-            if (this.token == null && needAuth) {
-                if (opts.error) {
-                    opts.error('please login first.');
-                }
-            } else {
+            // if (this.token == null && needAuth) {
+            //     if (opts.error) {
+            //         opts.error('please login first.');
+            //     }
+            // } else {
                 var params = {};
                 var headers = {
                     'Accept': 'application/json',
@@ -7169,7 +7169,7 @@ var CloudAPI = function () {
                 NetWork.send(requestUrl, params);
             }
         }
-    }]);
+    // }]);
 
     return CloudAPI;
 }();
