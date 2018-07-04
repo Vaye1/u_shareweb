@@ -7168,8 +7168,8 @@ var CloudAPI = function () {
                 }
                 NetWork.send(requestUrl, params);
             }
-        }
-    // }]);
+        // }
+    }]);
 
     return CloudAPI;
 }();
