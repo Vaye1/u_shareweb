@@ -2309,7 +2309,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nmodule.exports = {\n    appId: 10007,\n    appSecret: \"1923091283\",\n    cloud: {\n        // url: 'http://192.168.2.96:20000'\n        url: 'http://192.168.2.209:8000'\n    },\n    wxAppId: 'wx855030158e3d2ba9'\n};\n\n//# sourceURL=webpack:///./src/config/default.js?");
+eval("\n\n// module.exports = {\n//     appId:10007,\n//     appSecret:\"1923091283\",\n//     cloud: {\n//         // url: 'http://192.168.2.96:20000'\n//         url: 'http://192.168.2.209:8000'\n//     },\n//     wxAppId: 'wx855030158e3d2ba9'\n// };\nmodule.exports = {\n    appId: 10004,\n    appSecret: \"1923091283\",\n    cloud: {\n        // url: 'http://192.168.2.96:20000'\n        url: 'https://cloud.iot.u-gen.net/test-openapi/'\n    },\n    wxAppId: 'wx855030158e3d2ba9'\n};\n\n//# sourceURL=webpack:///./src/config/default.js?");
 
 /***/ }),
 
