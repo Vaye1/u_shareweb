@@ -11910,6 +11910,7 @@ var CloudAPI = function () {
     }, {
         key: 'send',
         value: function send(url, opts) {
+          console.log(opts);
             var needAuth = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
             var isPublic = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
             var isDebug = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
@@ -11943,7 +11944,8 @@ var CloudAPI = function () {
                         }
                     };
                     params.error = function (err) {
-                        opts.error(err);
+                      console.log(err);
+                        // opts.error(err);
                     };
                     params.complete = opts.complete;
                 }
