@@ -11910,6 +11910,7 @@ var CloudAPI = function () {
     }, {
         key: 'send',
         value: function send(url, opts) {
+          console.log("opts");
           console.log(opts);
             var needAuth = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
             var isPublic = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
