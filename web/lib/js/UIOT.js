@@ -11944,10 +11944,10 @@ var CloudAPI = function () {
                             opts.success(ret);
                         }
                     };
-                    params.error = function (err) {
-                      console.log(err);
-                        // opts.error(err);
-                    };
+                    // params.error = function (err) {
+                    //   // console.log(err);
+                    //     opts.error(err);
+                    // };
                     params.complete = opts.complete;
                 }
                 // params.error = opts.error;
