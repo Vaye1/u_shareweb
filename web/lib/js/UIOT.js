@@ -10788,6 +10788,9 @@ var Device = function () {
             // };
             // this.business.api.getDeviceInfo(opts);
             var sds = params.data.sds === true;
+            console.log(sds);
+            console.log(params.data.uuid);
+            console.log(params);
             if (sds) {
                 this.business.sds.getDeviceDetail({
                     data: {
