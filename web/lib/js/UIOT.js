@@ -10776,6 +10776,8 @@ var Device = function () {
     }, {
         key: "getInfo",
         value: function getInfo(params) {
+          console.log("getinfo");
+          console.log(params.data);
             var data = {
                 device_id: params.data.device_id
             };
