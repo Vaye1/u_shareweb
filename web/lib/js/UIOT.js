@@ -10776,33 +10776,18 @@ var Device = function () {
     }, {
         key: "getInfo",
         value: function getInfo(params) {
-          console.log("params.data");
+          console.log("aaaaaaaaaaa");
           console.log(params.data);
-            // var data = {
-            //     device_id: params.data.device_id
-            // };
-            // var opts = {
-            //     data: data,
-            //     success: params.success,
-            //     error: params.error,
-            //     complete: params.complete
-            // };
-            // this.business.api.getDeviceInfo(opts);
-            var sds = params.data.sds === true;
-            console.log(sds);
-            console.log(params.data.uuid);
-            console.log(params);
-            if (sds) {
-                this.business.sds.getDeviceDetail({
-                    data: {
-                        uuid: params.data.uuid
-                    },
-                    success: params.success,
-                    error: params.error
-                });
-            } else {
-                _get(SDSDevice.prototype.__proto__ || Object.getPrototypeOf(SDSDevice.prototype), 'getInfo', this).call(this, params);
-            }
+            var data = {
+                device_id: params.data.device_id
+            };
+            var opts = {
+                data: data,
+                success: params.success,
+                error: params.error,
+                complete: params.complete
+            };
+            this.business.api.getDeviceInfo(opts);
         }
 
         // 3 获取设备所绑定的用户列表（管理员）
@@ -11911,8 +11896,6 @@ var CloudAPI = function () {
     }, {
         key: 'send',
         value: function send(url, opts) {
-          console.log("opts");
-          console.log(opts);
             var needAuth = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
             var isPublic = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
             var isDebug = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
@@ -11945,10 +11928,9 @@ var CloudAPI = function () {
                             opts.success(ret);
                         }
                     };
-                    // params.error = function (err) {
-                    //   // console.log(err);
-                    //     opts.error(err);
-                    // };
+                    params.error = function (err) {
+                        opts.error(err);
+                    };
                     params.complete = opts.complete;
                 }
                 // params.error = opts.error;
