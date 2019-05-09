@@ -25,13 +25,13 @@ class CommunicationController extends ControllerBase {
             cType: "FYDevice",
         }
         ServiceManager.execAPPPush("20014", fymsg);
-        if (data.msgCode =='thing_user_bind_post') {
-            let message=typeof(data.message)=="string"?JSON.parse(data.message):data.message;
-            let iotId=message.iotId;
-            let fybindmsg=message.bind;
-            let idents=message.identityInfos;
-            let productKey=message.productKey;
-            let DeviceMsg=await this.FYPublic.getDeviceMsg({core:this.public.core,iotId:message.iotId,productKey:productKey});
+        data=JSON.parse(data.message);
+        if (data.hasOwnProperty("bind")) {
+            let iotId=data.iotId;
+            let fybindmsg=data.bind;
+            let idents=data.identityInfos;
+            let productKey=data.productKey;
+            let DeviceMsg=await this.FYPublic.getDeviceMsg({core:this.public.core,iotId:data.iotId,productKey:productKey});
             //调用飞燕接口获取设备信息之后的返回值，如果返回成功执行，返回失败结束
             if (DeviceMsg) {
                 let productRes = await this.public.core.findProductByKey({product_key:productKey,product_name:config.defaultProductName});
@@ -75,6 +75,7 @@ class CommunicationController extends ControllerBase {
                                     await this.public.core.delShareUserByDeviceId({device_id:device.id});
                                     let bind = await this.public.core.userBind({user_id:usermsg.id,device_id:device.id,role:'SA'});
                                     if(bind){
+                                        // await this.public.FY.TriggerService({iotId:device.device_id,identifier:"Bind",args:{result:1}});
                                         await this.FYPublic.TriggerService({
                                             core:this.public.core,
                                             iotId:iotId,
@@ -162,6 +163,7 @@ class CommunicationController extends ControllerBase {
                                         await this.dao.get('virtualuser').delVirtualUserByDevice({device_id:device.id});
                                         let bind = await this.public.core.userBind({user_id:usermsg.id,device_id:device.id,role:'SA'});
                                         if(bind){
+                                            // await this.public.FY.TriggerService({iotId:device.device_id,identifier:"Bind",args:{result:1}});
                                             await this.FYPublic.TriggerService({
                                                 core:this.public.core,
                                                 iotId:iotId,
@@ -241,7 +243,6 @@ class CommunicationController extends ControllerBase {
                 }
             }
         }else{
-            data=JSON.parse(data.message);
             //没有设备则新建一个设备
             let productRes = await this.public.core.findProductByKey({product_key:data.productKey,product_name:config.defaultProductName});
             let product = productRes[0];
@@ -349,15 +350,6 @@ class CommunicationController extends ControllerBase {
     async TmallGenieServiceAction(data) {
         console.log("data");
         console.log(data.params);
-        
-        let TmallGenieMsg={
-            message:data,
-            dataType:"PUSH",
-            action:"push",
-            mode:"wxdevice",
-            cType: "wxdevice",
-        }
-        ServiceManager.execAPPPush("20014", TmallGenieMsg);
         let extra=JSON.parse(data.params.extra);
         // let extra=data.params.extra;
         let slotEntities=data.params.slotEntities;
