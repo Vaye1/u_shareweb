@@ -303,7 +303,7 @@ class DeviceController extends ControllerBase {
 		}else{
 			template.error.call(this,'paramsNull');
 		}
-		let bindmsg=await this.public.core.findBindInfo({device_id:device_id,user_id:data.user.uid,state:1});
+		let bindmsg=await this.public.core.findBindInfo({device_id:device_id,user_id:data.user.uid,status:1});
 		if (bindmsg) {
 			return {user_role:1}
 		}else{

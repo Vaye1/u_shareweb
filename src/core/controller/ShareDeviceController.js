@@ -162,7 +162,22 @@ class ShareDeviceController extends ControllerBase{
 			try{
 				let ShareUserInfo=await this.dao.get('shareuser').findShareUserById({id:data.params.share_id})
 				if (ShareUserInfo && ShareUserInfo.shareuser_id) {
-					await this.public.core.delBindByDeviceIdAndUserId({device_id:data.params.device_id,user_id:ShareUserInfo.shareuser_id});
+					let device=await this.dao.get('device').findDeviceById({
+						id:data.params.device_id
+					})
+					let user=await this.dao.get('user').findUserById({
+						uid:ShareUserInfo.shareuser_id
+					})
+					let fyunbind = await this.public.core.unbind({
+						core:this.public.core,
+						iotId:device.device_id,
+						identityId:user.username
+					});
+					if (fyunbind&&fyunbind.code==200){
+						await this.public.core.delBindByDeviceIdAndUserId({device_id:data.params.device_id,user_id:ShareUserInfo.shareuser_id});
+					}else{
+						template.error.call(this,'delShareUserError');
+					}
 				}
 				await this.dao.get('shareuser').delShareUserById({id:data.params.share_id})
 			}catch(err){
@@ -173,8 +188,23 @@ class ShareDeviceController extends ControllerBase{
 				// if(data.user.uid==data.params.user_id){
 				// 	template.error.call(this,'delShareUserError');
 				// }
-				await this.public.core.delBindByDeviceIdAndUserId({device_id:data.params.device_id,user_id:data.params.user_id});
-				await this.dao.get('shareuser').delShareUserByShareuserId({device_id:data.params.device_id,shareuser_id:data.params.user_id});
+				let device=await this.dao.get('device').findDeviceById({
+					id:data.params.device_id
+				})
+				let user=await this.dao.get('user').findUserById({
+					uid:data.params.user_id
+				})
+				let fyunbind = await this.public.core.unbind({
+					core:this.public.core,
+					iotId:device.device_id,
+					identityId:user.username
+				});
+				if (fyunbind&&fyunbind.code==200){
+					await this.public.core.delBindByDeviceIdAndUserId({device_id:data.params.device_id,user_id:data.params.user_id});
+					await this.dao.get('shareuser').delShareUserByShareuserId({device_id:data.params.device_id,shareuser_id:data.params.user_id});
+				}else{
+					template.error.call(this,'delShareUserError');
+				}
 			}catch(err){
 				template.error.call(this,'sqlerror');
 			}
@@ -303,11 +333,12 @@ class ShareDeviceController extends ControllerBase{
 		let user=await this.dao.get('user').findUserById({
 			uid:user_id
 		})
-		let fyunbind = await this.FYPublic.unbind({
+		let fyunbind = await this.public.core.unbind({
 			core:this.public.core,
 			iotId:device.device_id,
 			identityId:user.username
 		});
+
 		if (fyunbind&&fyunbind.code==200){
 			let userRole=await this.dao.get('device').findRoleByUserId({
 				user_id:user_id,

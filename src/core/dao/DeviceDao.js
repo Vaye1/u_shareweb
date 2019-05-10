@@ -280,6 +280,7 @@ class DeviceDao extends DaoBase {
 	//设置device info字段内容
 	async setDeviceInfo(data) {
 		this.checkKeyExists(data, "id", "info");
+		console.log(data.info)
 		let update = '';
 		for (let key in data.info) {
 			if (typeof data.info[key] === 'object') {

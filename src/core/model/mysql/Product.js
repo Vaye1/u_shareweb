@@ -14,7 +14,8 @@ class Product extends MysqlBase {
         type: Sequelize.DATE()
       },
       info: {
-        type: Sequelize.JSON()
+        type: Sequelize.JSON(),
+        allowNull: true
       }
     },{
       timestamps: true,

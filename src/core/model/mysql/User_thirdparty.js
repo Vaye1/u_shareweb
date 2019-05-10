@@ -8,7 +8,7 @@ class User_device extends MysqlBase {
                 allowNull: true
             },
             username: {
-                type: Sequelize.CHAR(),
+                type: Sequelize.CHAR(64),
                 allowNull: false
             },
             type: {

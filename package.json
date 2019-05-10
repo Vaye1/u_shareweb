@@ -1,6 +1,6 @@
 {
   "name": "iot-cloud-publicAPI-soc",
-  "version": "1.0.3",
+  "version": "1.0.1",
   "description": "",
   "main": "src/PublicManager.js",
   "scripts": {

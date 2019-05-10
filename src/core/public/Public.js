@@ -334,12 +334,16 @@ class Public extends PublicFunBase{
                 apiVer:'1.0.4',
                 params:{
                     iotId:data.iotId,
-                    productKey:data.productKey,
-                    deviceName:data.deviceName,
+                    // productKey:data.productKey,
+                    productKey:"a1pDrFc5DVW",
+                    deviceName:"test_cyy_1",
+                    // deviceName:data.deviceName,
                     identityId:data.identityId
                 }
             }
-        };
+		};
+		console.log("param");
+		console.log(param);
         let res = await ServiceManager.execCom('FYTokenService', 'postFYApis', param);
         return res;
     }
